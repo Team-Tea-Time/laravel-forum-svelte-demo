@@ -10,3 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::middleware('auth:sanctum')->get('/api/user', function (Illuminate\Http\Request $request) {
+    return $request->user();
+});
