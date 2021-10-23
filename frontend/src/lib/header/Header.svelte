@@ -1,6 +1,9 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+	import logo from './icon.png';
+
+	import { User } from 'svelte-hero-icons';
+	import Icon from 'svelte-hero-icons/Icon.svelte';
 </script>
 
 <header>
@@ -11,21 +14,18 @@
 	</div>
 
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
 		<ul>
 			<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.path === '/about'}><a sveltekit:prefetch href="/about">About</a></li>
-			<li class:active={$page.path === '/todos'}><a sveltekit:prefetch href="/todos">Todos</a></li>
+			<li class:active={$page.path === '/recent'}><a sveltekit:prefetch href="/recent">Recent</a></li>
+			<li class:active={$page.path === '/unread'}><a sveltekit:prefetch href="/unread">Unread</a></li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<a sveltekit:prefetch href="/user" class="user-link">
+			<Icon src="{User}" size="24" />
+			<span class="label">Log in</span>
+		</a>
 	</div>
 </header>
 
@@ -33,41 +33,35 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		background: linear-gradient(to right, rgb(47, 53, 73), rgb(63, 72, 99));
 	}
 
 	.corner {
-		width: 3em;
-		height: 3em;
+		flex: 0 1 auto;
+		padding: .4em .3em .1em .3em;
 	}
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+	.corner .user-link {
+		display: inline-block;
+		padding: .3em .3em .2em .3em;
+		color: var(--secondary-color);
+		font-weight: 500;
+		transition: color .2s;
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
+	.corner .user-link:hover {
+		color: var(--pure-white);
+		text-decoration: none;
+	}
+
+	.corner .user-link .label {
+		display: none;
 	}
 
 	nav {
+		flex: 1;
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
 	}
 
 	ul {
@@ -88,33 +82,51 @@
 		height: 100%;
 	}
 
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
 	nav a {
+		position: relative;
 		display: flex;
 		height: 100%;
 		align-items: center;
 		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+		color: var(--secondary-color);
+		font-weight: 500;
 		text-decoration: none;
 		transition: color 0.2s linear;
 	}
 
+	a::after {
+		--size: 6px;
+		content: '';
+		height: 3px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: var(--accent-color);
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+
 	a:hover {
-		color: var(--accent-color);
+		color: var(--pure-white);
+	}
+
+	a:hover::after {
+		opacity: 0.65;
+	}
+
+	li.active a {
+		color: var(--pure-white);
+	}
+
+	li.active a::after {
+		opacity: 1;
+	}
+
+
+	@media (min-width: 720px) {
+		.corner .user-link .label {
+			display: inline;
+		}
 	}
 </style>
