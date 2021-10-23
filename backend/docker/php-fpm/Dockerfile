@@ -1,8 +1,8 @@
 FROM php:7.4-fpm
 
-COPY src/composer.* /var/www/laravel-forum-demo/
+COPY src/composer.* /var/www/laravel-forum-svelte-demo/
 
-WORKDIR /var/www/laravel-forum-demo
+WORKDIR /var/www/laravel-forum-svelte-demo
 
 # Configure timezone to avoid time sync issues
 RUN rm /etc/localtime

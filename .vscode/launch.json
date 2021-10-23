@@ -9,7 +9,7 @@
             "type": "php",
             "request": "launch",
             "pathMappings": {
-                "/var/www/laravel-forum-demo": "${workspaceFolder}/src"
+                "/var/www/laravel-forum-svelte-demo": "${workspaceFolder}/src"
             },
             "port": 9001,
             "ignore": [
