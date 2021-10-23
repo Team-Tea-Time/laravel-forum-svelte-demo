@@ -37,7 +37,7 @@ return [
         'prefix' => '/api',
         'as' => 'forum.api.',
         'namespace' => '\TeamTeaTime\Forum\Http\Controllers\Api',
-        'middleware' => ['api', 'auth:api'],
+        'middleware' => ['auth:sanctum'],
     ],
 
 ];

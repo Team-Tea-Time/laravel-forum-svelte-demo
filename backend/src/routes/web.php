@@ -10,7 +10,3 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Auth::routes();
-
-$router->get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

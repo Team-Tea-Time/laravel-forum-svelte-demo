@@ -7,8 +7,9 @@
     "require": {
         "php": "^7.4",
         "fideloper/proxy": "^4.0",
+        "laravel/fortify": "^1.8",
         "laravel/framework": "^8.0",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "^2.12",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "riari/laravel-forum": "~5.0"
